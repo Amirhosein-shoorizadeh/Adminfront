@@ -23,7 +23,7 @@ public class Adminservice {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/users")) // فرض بر وجود این endpoint
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + AuthApiService.getAuthToken())
+                .header("Authorization", "Bearer " + LoginService.getAuthToken())
                 .GET()
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -39,7 +39,7 @@ public class Adminservice {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/users/approve/" + userId))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + AuthApiService.getAuthToken())
+                .header("Authorization", "Bearer " + LoginService.getAuthToken())
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
