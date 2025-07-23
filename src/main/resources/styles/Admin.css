@@ -1,0 +1,189 @@
+
+.root {
+    -fx-font-family: "Roboto", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+}
+.label-dashboard {
+    -fx-border-color: #2c3e50;        /* رنگ بوردر سورمه‌ای */
+    -fx-border-width: 2px;            /* ضخامت خط */
+    -fx-border-radius: 10px;          /* گوشه‌های گرد */
+    -fx-padding: 10px 20px;           /* فاصله داخل لیبل */
+    -fx-font-size: 35px;              /* اندازه فونت */
+    -fx-text-fill: #2c3e50;           /* رنگ متن */
+    -fx-alignment: center;
+}
+.button2 {
+    -fx-background-color: #2c3e50; /* سورمه ای */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-family: "Roboto", "Segoe UI", "Arial";
+    -fx-background-radius: 15px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.button2:hover {
+    -fx-background-color: #3b4a66; /* سورمه ای روشن تر */
+    -fx-cursor: hand;
+}
+
+.button1 {
+    -fx-background-color: #2c3e50; /* سورمه ای */
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Roboto", "Segoe UI", "Arial";
+    -fx-background-radius: 20px; /* برای گوشه‌های گرد */
+    -fx-padding: 1px 1px;
+    -fx-max-width: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.button1:hover {
+    -fx-background-color: #3b4a66; /* سورمه ای روشن تر */
+    -fx-cursor: hand;
+}
+
+.vbox {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 30px;
+    -fx-alignment: center;
+}
+
+.text-field {
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-padding: 8px 12px;
+    -fx-border-color: #2c3e50;
+    -fx-border-width: 1px;
+}
+
+/* عنوان صفحه (Label بزرگ بالا) */
+.label-title {
+    -fx-font-family: "Montserrat", "Poppins", "Raleway", "Segoe UI", "Roboto", sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 0px 0;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.link-label {
+    -fx-text-fill: #3498db;
+    -fx-underline: true;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+/* پس‌زمینه جدول سفید */
+.table-view {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: #001F3F; /* سورمه ای برای خطوط سلول */
+    -fx-border-color: #001F3F; /* حاشیه جدول */
+}
+
+/* هدر جدول سورمه ای و متن سفید */
+.table-view .column-header-background {
+    -fx-background-color: #001F3F;
+}
+
+.table-view .column-header,
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* متن سلول‌ها سورمه‌ای */
+.table-cell {
+    -fx-text-fill: #001F3F;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* دکمه‌ها سورمه‌ای با متن سفید */
+.edit_button {
+    -fx-background-color: #001F3F;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+}
+
+.edit_button:hover {
+    -fx-background-color: #003366;
+}
+
+/* پس‌زمینه ScrollPane سفید */
+.scroll-pane {
+    -fx-background: white;
+}
+
+/* استایل نوار اسکرول عمودی */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* دکمه‌های اسکرول */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: #001F3F;
+}
+
+/* Thumb (دکمه قابل کشیدن اسکرول) */
+.scroll-bar .thumb {
+    -fx-background-color: #001F3F;
+    -fx-background-radius: 5;
+}
+
+/* وقتی موس روی thumb هست */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #003366;
+}
+
+/* کل اسلایدر */
+.slider {
+}
+
+/* خط (track) اسلایدر */
+.slider .track {
+    -fx-background-color: #2c3e50; /* سورمه‌ای تیره */
+    -fx-background-radius: 5px;
+    -fx-pref-height: 6px;
+}
+
+/* قسمت پر شده از خط (filled track) */
+.slider .filled-track {
+    -fx-background-color: #2c3e50; /* سورمه‌ای روشن‌تر */
+    -fx-background-radius: 5px;
+}
+
+/* دکمه لغزنده (thumb) */
+.slider .thumb {
+    -fx-background-color: #2c3e50; /* سورمه‌ای متوسط */
+    -fx-background-radius: 12px;
+    -fx-pref-width: 24px;
+    -fx-pref-height: 24px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3), 4,0,0,2 );
+}
+
+/* حالت هاور روی دکمه */
+.slider .thumb:hover {
+    -fx-background-color: #3949AB; /* سورمه‌ای روشن‌تر در هاور */
+}
+
+/* حالت فشرده شده */
+.slider .thumb:pressed {
+    -fx-background-color: #1A237E; /* سورمه‌ای تیره‌تر */
+}
+
+
+.left-vbox {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 400px;
+    -fx-alignment: top-left; /* محتوا هم از بالا-چپ شروع شه */
+    -fx-background-color: #f0f0f0; /* رنگ بک‌گراند اختیاری */
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+
+}
