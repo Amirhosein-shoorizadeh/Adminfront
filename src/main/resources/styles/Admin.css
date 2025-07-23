@@ -7,7 +7,7 @@
     -fx-border-width: 2px;            /* ضخامت خط */
     -fx-border-radius: 10px;          /* گوشه‌های گرد */
     -fx-padding: 10px 20px;           /* فاصله داخل لیبل */
-    -fx-font-size: 35px;              /* اندازه فونت */
+    -fx-font-size: 45px;              /* اندازه فونت */
     -fx-text-fill: #2c3e50;           /* رنگ متن */
     -fx-alignment: center;
 }

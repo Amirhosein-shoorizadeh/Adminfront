@@ -1,9 +1,19 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import service.LoginService;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -14,28 +24,52 @@ public class LoginController {
     private TextField PasswordTextField1;
 
     @FXML
-    private Label SignUpLabel;
+    private Button LoginButton;
 
     @FXML
     public void initialize() {
-        // اختیاری: برای تنظیمات اولیه
+        // می‌تونی اینجا کدهای اولیه مثل تنظیمات پیش‌فرض رو بذاری
     }
 
     @FXML
-    public void LoginAction(ActionEvent event) {
+    public void LoginAction(ActionEvent event) throws IOException {
         String phone = PhoneTextField.getText();
         String password = PasswordTextField1.getText();
 
-        // فعلا فقط چاپ می‌کنیم
-        System.out.println("Phone: " + phone);
-        System.out.println("Password: " + password);
+        if (phone.isEmpty() || password.isEmpty()) {
+            showAlert("Error", "Please fill all fields.");
+            return;
+        }
 
-        // اینجا می‌تونی لاجیک ورود یا چک با دیتابیس رو اضافه کنی
+        try {
+            LoginService.login(phone, password);
+            System.out.println("Logged in successfully.");
+
+            // لود کردن فایل AdminDashboard.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard/AdminDashboard.fxml"));
+            Parent root = loader.load();
+
+            // دریافت Stage فعلی
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // تنظیم Scene جدید
+            Scene scene = new Scene(root, 800, 600); // اندازه دلخواه، می‌تونی تغییر بدی
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Redirecting to dashboard...");
+
+        } catch (Exception e) {
+            Platform.runLater(() -> {
+                showAlert("Login Error", e.getMessage());
+            });
+        }
     }
 
-    @FXML
-    public void goToSignUp() {
-        System.out.println("Going to signup page...");
-        // اینجا می‌تونی صفحه signup رو لود کنی
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
