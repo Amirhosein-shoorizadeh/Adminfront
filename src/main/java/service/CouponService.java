@@ -41,4 +41,18 @@ public class CouponService {
             throw new Exception("Failed to delete coupon: " + response.body());
         }
     }
+    public static void createCoupon(CouponDto dto) throws Exception {
+        String requestBody = gson.toJson(dto);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/coupons"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() != 201) {
+            throw new Exception("Failed to create coupon: " + response.body());
+        }
+    }
+
 }

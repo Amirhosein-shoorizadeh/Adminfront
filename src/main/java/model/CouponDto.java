@@ -26,6 +26,7 @@ public class CouponDto {
         this.end_date = end_date;
     }
 
+    public  CouponDto() {}
 
     public long getId() {
         return Id;

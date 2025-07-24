@@ -28,12 +28,12 @@ public class CouponDashboardController {
 
     @FXML
     private void handleCraetecoupon(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Dashboard/CreateCoupon.fxml"); // چک کن این فایل وجود داره
+        loadNewScene(event, "view/Coupon/CreateCoupon.fxml"); // چک کن این فایل وجود داره
     }
 
     @FXML
     private void handleEditCoupon(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Coupon/CouponList.fxml");
+        loadNewScene(event, "view/Coupon/CouponList.fxml");
     }
 
     @FXML
@@ -42,11 +42,6 @@ public class CouponDashboardController {
     }
 
     private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {
-        // بررسی وجود مسیر
-        if (getClass().getResource(fxmlPath) == null) {
-            throw new IOException("FXML file not found: " + fxmlPath);
-        }
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = loader.load();
 
