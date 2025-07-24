@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CouponListController" alignment="CENTER" spacing="10" prefWidth="800" prefHeight="600">
-    <children>
-        <Label text="Coupon List" styleClass="label-dashboard" />
-        <TableView fx:id="couponTable" prefWidth="750" prefHeight="400">
-            <columns>
-                <TableColumn text="ID" prefWidth="100" cellValueFactory="#{item.idProperty}" />
-                <TableColumn text="Coupon Code" prefWidth="200" cellValueFactory="#{item.couponCodeProperty}" />
-                <TableColumn text="Actions" prefWidth="450">
-                    <cellFactory>
-                        <fx:define>
-                            <Button fx:id="editButton" text="Edit" onAction="#handleEditFromTable" />
-                            <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteFromTable" />
-                        </fx:define>
-                    </cellFactory>
-                </TableColumn>
-            </columns>
-        </TableView>
-        <HBox spacing="10">
-            <Button fx:id="refreshButton" text="Refresh" onAction="#handleRefresh" />
-            <Button fx:id="backButton" text="Back" onAction="#handleBack" />
-        </HBox>
-    </children>
-</VBox>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../styles/Admin.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1" fx:controller="controller.CouponListController">
+    <content>
+        <VBox alignment="TOP_CENTER" prefHeight="705.0" prefWidth="781.0">
+            <children>
+                <Button fx:id="BackButton" mnemonicParsing="false" onAction="#BackAction" prefHeight="26.0" prefWidth="54.0" styleClass="button2" text="Back">
+                    <VBox.margin>
+                        <Insets right="720.0" top="5.0" />
+                    </VBox.margin>
+                </Button>
+                <Label styleClass="label-title" text="Coupons">
+                    <font>
+                        <Font size="32.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="CouponListView" prefHeight="604.0" prefWidth="782.0" style="-fx-border-color: white;" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets left="5.0" right="3.0" top="10.0" />
+                    </VBox.margin>
+                </ListView>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
