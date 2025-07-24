@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,12 +14,12 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="506.0" spacing="10.0">
                <children>
-                  <Button fx:id="Coupon" mnemonicParsing="false" prefHeight="171.0" prefWidth="298.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Coupon" onAction="#handleCoupon">
+                  <Button fx:id="Coupon" mnemonicParsing="false" onAction="#handleCoupon" prefHeight="171.0" prefWidth="298.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Coupon">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Financial_Analysis" mnemonicParsing="false" prefHeight="272.0" prefWidth="294.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Financial analysis" onAction="#handleFinancialAnalysis">
+                  <Button fx:id="Financial_Analysis" mnemonicParsing="false" onAction="#handleFinancialAnalysis" prefHeight="272.0" prefWidth="294.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Financial analysis">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -30,7 +31,7 @@
             </VBox>
             <VBox prefHeight="400.0" prefWidth="501.0" spacing="10.0">
                <children>
-                  <Button fx:id="Dashboardtext" mnemonicParsing="false" prefHeight="414.0" prefWidth="293.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Approval System" onAction="#handleDashboardtext">
+                  <Button fx:id="Dashboardtext" mnemonicParsing="false" onAction="#handleDashboardtext" prefHeight="414.0" prefWidth="293.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Approval System">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -39,7 +40,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="Logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Logout" onAction="#handleLogout" />
+      <Button fx:id="Logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="35.0" prefWidth="100.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Logout" />
       <Label layoutX="236.0" layoutY="49.0" prefHeight="64.0" prefWidth="334.0" styleClass="label-dashboard" stylesheets="@../../styles/Admin.css" text="Dashboard" textAlignment="CENTER">
          <font>
             <Font size="40.0" />

@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,44 +12,41 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DashboardController {
+public class CouponDashboardController {
 
     @FXML
-    private Button Coupon;
+    private Button Back;
 
     @FXML
-    private Button Financial_Analysis;
+    private Button Craetecoupon;
 
     @FXML
-    private Button Dashboardtext;
-
-    @FXML
-    private Button Logout;
+    private Button EditCoupon;
 
     @FXML
     private Label labelDashboard;
 
     @FXML
-    private void handleCoupon(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Dashboard/CouponDashboard.fxml");
+    private void handleCraetecoupon(ActionEvent event) throws IOException {
+        loadNewScene(event, "/view/Dashboard/CreateCoupon.fxml"); // چک کن این فایل وجود داره
     }
 
     @FXML
-    private void handleFinancialAnalysis(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Dashboard/FinancialAnalysisDashboard.fxml"); // فرض شده یه صفحه جدید
+    private void handleEditCoupon(ActionEvent event) throws IOException {
+        loadNewScene(event, "/view/Coupon/CouponList.fxml");
     }
 
     @FXML
-    private void handleDashboardtext(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Dashboard/ApprovalDashboard.fxml");
-    }
-
-    @FXML
-    private void handleLogout(ActionEvent event) {
-        Platform.exit();
+    private void handleBack(ActionEvent event) throws IOException {
+        loadNewScene(event, "/view/Dashboard/AdminDashboard.fxml");
     }
 
     private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {
+        // بررسی وجود مسیر
+        if (getClass().getResource(fxmlPath) == null) {
+            throw new IOException("FXML file not found: " + fxmlPath);
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
         Parent root = loader.load();
 

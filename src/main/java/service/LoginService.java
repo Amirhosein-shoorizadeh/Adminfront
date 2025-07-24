@@ -23,7 +23,7 @@ public class LoginService {
         LoginDto loginDto = new LoginDto(phone, password);
         String jsonBody = gson.toJson(loginDto);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/auth/login"))
+                .uri(URI.create(BASE_URL + "/admin/login"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();

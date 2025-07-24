@@ -7,20 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CouponDashboardController">
    <children>
-      <Button layoutX="23.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Logout" />
-      <HBox layoutX="100.0" layoutY="136.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../styles/Admin.css">
+      <Button fx:id="Back" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="33.0" prefWidth="100.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Back" />
+      <HBox layoutX="100.0" layoutY="179.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../styles/Admin.css">
          <children>
             <VBox prefHeight="339.0" prefWidth="300.0" styleClass="left-vbox" stylesheets="@../../styles/Admin.css">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="329.0" prefWidth="279.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Create">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="372.0" prefWidth="317.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Delete">
+                  <Button fx:id="Craetecoupon" mnemonicParsing="false" onAction="#handleCraetecoupon" prefHeight="260.0" prefWidth="279.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Create">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -29,7 +23,7 @@
             </VBox>
             <VBox layoutX="160.0" layoutY="40.0" prefHeight="400.0" prefWidth="300.0" styleClass="left-vbox" stylesheets="@../../styles/Admin.css">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="434.0" prefWidth="279.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="All Coupon">
+                  <Button fx:id="EditCoupon" mnemonicParsing="false" onAction="#handleEditCoupon" prefHeight="257.0" prefWidth="279.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="All Coupon">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -38,6 +32,6 @@
             </VBox>
          </children>
       </HBox>
-      <Label layoutX="309.0" layoutY="47.0" prefHeight="75.0" prefWidth="183.0" styleClass="label-dashboard" stylesheets="@../../styles/Admin.css" text="Coupon" />
+      <Label layoutX="265.0" layoutY="47.0" prefHeight="90.0" prefWidth="226.0" styleClass="label-dashboard" stylesheets="@../../styles/Admin.css" text="Coupon" />
    </children>
 </Pane>

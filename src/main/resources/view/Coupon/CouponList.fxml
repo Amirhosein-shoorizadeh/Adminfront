@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CouponListController" alignment="CENTER" spacing="10" prefWidth="800" prefHeight="600">
+    <children>
+        <Label text="Coupon List" styleClass="label-dashboard" />
+        <TableView fx:id="couponTable" prefWidth="750" prefHeight="400">
+            <columns>
+                <TableColumn text="ID" prefWidth="100" cellValueFactory="#{item.idProperty}" />
+                <TableColumn text="Coupon Code" prefWidth="200" cellValueFactory="#{item.couponCodeProperty}" />
+                <TableColumn text="Actions" prefWidth="450">
+                    <cellFactory>
+                        <fx:define>
+                            <Button fx:id="editButton" text="Edit" onAction="#handleEditFromTable" />
+                            <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteFromTable" />
+                        </fx:define>
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <HBox spacing="10">
+            <Button fx:id="refreshButton" text="Refresh" onAction="#handleRefresh" />
+            <Button fx:id="backButton" text="Back" onAction="#handleBack" />
+        </HBox>
+    </children>
+</VBox>
