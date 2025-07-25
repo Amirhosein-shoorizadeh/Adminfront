@@ -1,7 +1,9 @@
 package service;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import model.CouponDto;
+import util.ErrorHandler;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,44 +17,69 @@ public class CouponService {
     private static final Gson gson = new Gson();
 
     public static List<CouponDto> getAllCoupons() throws Exception {
+        // دریافت توکن از LoginService
+        String authToken = LoginService.getAuthToken();
+        if (authToken == null || authToken.isEmpty()) {
+            throw new Exception("توکن احراز هویت در دسترس نیست.");
+        }
+
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/coupons")) // فرض endpoint برای گرفتن همه کوپن‌ها
+                .uri(URI.create(BASE_URL + "/coupons"))
                 .header("Content-Type", "application/json")
+                // اضافه کردن توکن به هدر Authorization
+                .header("Authorization", "Bearer " + authToken)
                 .GET()
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() == 200) {
-            return gson.fromJson(response.body(), List.class); // نیاز به تنظیم دقیق‌تر نوع
+            List<CouponDto> coupons = gson.fromJson(response.body(), new TypeToken<List<CouponDto>>(){}.getType());
+            return coupons;
         } else {
-            throw new Exception("Failed to fetch coupons: " + response.body());
+            throw new Exception("خطا در دریافت کوپن‌ها: " + ErrorHandler.parseErrorMessage(response.body()));
         }
     }
 
     public static void deleteCoupon(long id) throws Exception {
+        // دریافت توکن از LoginService
+        String authToken = LoginService.getAuthToken();
+        if (authToken == null || authToken.isEmpty()) {
+            throw new Exception("توکن احراز هویت در دسترس نیست.");
+        }
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/coupons/" + id))
                 .header("Content-Type", "application/json")
+                // اضافه کردن توکن به هدر Authorization
+                .header("Authorization", "Bearer " + authToken)
                 .DELETE()
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() != 200) {
-            throw new Exception("Failed to delete coupon: " + response.body());
+            throw new Exception("خطا در حذف کوپن: " + ErrorHandler.parseErrorMessage(response.body()));
         }
     }
+
     public static void createCoupon(CouponDto dto) throws Exception {
+        // دریافت توکن از LoginService
+        String authToken = LoginService.getAuthToken();
+        if (authToken == null || authToken.isEmpty()) {
+            throw new Exception("توکن احراز هویت در دسترس نیست.");
+        }
+
         String requestBody = gson.toJson(dto);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/coupons"))
                 .header("Content-Type", "application/json")
+                // اضافه کردن توکن به هدر Authorization
+                .header("Authorization", "Bearer " + authToken)
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() != 201) {
-            throw new Exception("Failed to create coupon: " + response.body());
+            throw new Exception("خطا در ایجاد کوپن: " + ErrorHandler.parseErrorMessage(response.body()));
         }
     }
-
 }

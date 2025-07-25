@@ -28,12 +28,12 @@ public class CouponDashboardController {
 
     @FXML
     private void handleCraetecoupon(ActionEvent event) throws IOException {
-        loadNewScene(event, "view/Coupon/CreateCoupon.fxml"); // چک کن این فایل وجود داره
+        loadNewScene(event, "/view/Coupon/createCoupon.fxml"); // چک کن این فایل وجود داره
     }
 
     @FXML
     private void handleEditCoupon(ActionEvent event) throws IOException {
-        loadNewScene(event, "view/Coupon/CouponList.fxml");
+        loadNewScene(event, "/view/Coupon/CouponList.fxml");
     }
 
     @FXML

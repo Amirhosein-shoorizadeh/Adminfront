@@ -42,7 +42,5 @@ public class CreateCouponController {
     }
 
     public void onBackClicked(ActionEvent event) {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.close(); // یا اگر صفحه اصلی دارید به اون برگردید
-    }
+        }
 }
