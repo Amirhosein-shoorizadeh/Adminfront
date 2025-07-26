@@ -1,6 +1,6 @@
 package model;
 
-public class User {
+public class UserProfileDto {
     private long id;
     public String full_name;
     public String phone;
@@ -23,7 +23,7 @@ public class User {
         }
     }
 
-    public User(String full_name, String phone, String email, String role, String address, String profileImageBase64, BankInfo bank_info) {
+    public UserProfileDto(String full_name, String phone, String email, String role, String address, String profileImageBase64, BankInfo bank_info) {
 
         this.full_name = full_name;
         this.phone = phone;

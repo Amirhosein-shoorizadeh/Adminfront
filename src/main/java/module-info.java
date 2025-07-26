@@ -17,6 +17,7 @@ module application.adminfront {
 
     // ماژول org.json (قبلاً اضافه شده)
     requires org.json;
+    requires com.fasterxml.jackson.databind;
 
     // باز کردن پکیج‌ها برای دسترسی FXML و Gson
     opens application.adminfront to javafx.fxml;

@@ -4,24 +4,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import model.User;
+import model.UserProfileDto;
 import service.Adminservice;
 
 public class AdminApproval {
     @FXML
-    private TableView<User> TabLveiw;
+    private TableView<UserProfileDto> TabLveiw;
     @FXML
-    private TableColumn<User, String> Profile;
+    private TableColumn<UserProfileDto, String> Profile;
     @FXML
-    private TableColumn<User, String> NameColumn;
+    private TableColumn<UserProfileDto, String> NameColumn;
     @FXML
-    private TableColumn<User, String> RoleColumn;
+    private TableColumn<UserProfileDto, String> RoleColumn;
     @FXML
-    private TableColumn<User, Void> ActionColumn;
+    private TableColumn<UserProfileDto, Void> ActionColumn;
     @FXML
     private Button Back;
 
@@ -45,7 +43,7 @@ public class AdminApproval {
                     text.setStyle("-fx-fill: blue; -fx-underline: true;");
                     setGraphic(text);
                     text.setOnMouseClicked(event -> {
-                        User user = getTableRow().getItem();
+                        UserProfileDto user = getTableRow().getItem();
                         if (user != null) {
                             showUserDetails(user);
                         }
@@ -61,7 +59,7 @@ public class AdminApproval {
             {
                 approveButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
                 approveButton.setOnAction(event -> {
-                    User user = getTableRow().getItem();
+                    UserProfileDto user = getTableRow().getItem();
                     if (user != null) {
                         try {
 //                            Adminservice.approveUser(user.getId());
@@ -94,7 +92,7 @@ public class AdminApproval {
     // بارگذاری کاربران از API
     private void loadUsers() {
         try {
-            ObservableList<User> users = Adminservice.getUsers();
+            ObservableList<UserProfileDto> users = Adminservice.getUsers();
             TabLveiw.setItems(users);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "خطا در بارگذاری کاربران: " + e.getMessage());
@@ -103,7 +101,7 @@ public class AdminApproval {
     }
 
     // نمایش جزئیات کاربر
-    private void showUserDetails(User user) {
+    private void showUserDetails(UserProfileDto user) {
 //        Stage stage = new Stage();
 //        VBox vbox = new VBox(10);
 //        vbox.setStyle("-fx-padding: 10; -fx-background-color: #f4f4f4;");

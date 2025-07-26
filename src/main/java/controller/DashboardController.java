@@ -42,7 +42,7 @@ public class DashboardController {
 
     @FXML
     private void handleDashboardtext(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Dashboard/ApprovalDashboard.fxml");
+        loadNewScene(event, "/view/UserApproval/UserList.fxml");
     }
 
     @FXML

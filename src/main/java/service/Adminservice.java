@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.User;
+import model.UserProfileDto;
 import util.ErrorHandler;
 
 import java.net.URI;
@@ -19,7 +19,7 @@ public class Adminservice {
     private static final Gson gson = new Gson();
 
     // دریافت لیست کاربران
-    public static ObservableList<User> getUsers() throws Exception {
+    public static ObservableList<UserProfileDto> getUsers() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/users")) // فرض بر وجود این endpoint
                 .header("Content-Type", "application/json")
@@ -28,7 +28,7 @@ public class Adminservice {
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() == 200) {
-            List<User> users = gson.fromJson(response.body(), new TypeToken<List<User>>(){}.getType());
+            List<UserProfileDto> users = gson.fromJson(response.body(), new TypeToken<List<UserProfileDto>>(){}.getType());
             return FXCollections.observableArrayList(users);
         }
         throw new Exception("خطا در دریافت کاربران: " + ErrorHandler.parseErrorMessage(response.body()));
