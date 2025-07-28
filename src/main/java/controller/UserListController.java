@@ -1,9 +1,13 @@
 package controller;
 
+import controller.UserDetailsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -73,18 +77,10 @@ public class UserListController {
 
         // Load initial data
         refreshUsers();
-
-        // Refresh button logic
-        refreshButton.setOnAction(event -> refreshUsers());
-
-        // Back button logic (closes stage; adjust based on your app)
-        backButton.setOnAction(event -> {
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.close();
-        });
     }
 
-    private void refreshUsers() {
+    @FXML
+    public void refreshUsers() {
         try {
             UserProfileDto[] fetchedUsers = approveService.getUsers();
             users.clear();
@@ -97,6 +93,19 @@ public class UserListController {
         }
     }
 
+    @FXML
+    public void handleBack(ActionEvent event)throws IOException {
+        loadNewScene(event, "/view/Dashboard/AdminDashboard.fxml");
+    }
+    private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600); // اندازه دلخواه، می‌تونی تغییر بدی
+        stage.setScene(scene);
+        stage.show();
+    }
     private void showDetailsWindow(UserProfileDto user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/model/UserDetails.fxml"));

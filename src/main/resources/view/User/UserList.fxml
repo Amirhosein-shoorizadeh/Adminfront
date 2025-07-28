@@ -17,7 +17,7 @@
         </Label>
         <HBox spacing="10">
             <children>
-                <Button fx:id="backButton" prefHeight="26.0" prefWidth="81.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Back" />
+                <Button fx:id="backButton" onAction="#handleBack" prefHeight="26.0" prefWidth="81.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Back" />
                 <Button fx:id="refreshButton" prefHeight="26.0" prefWidth="66.0" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Refresh" />
             </children>
         </HBox>
