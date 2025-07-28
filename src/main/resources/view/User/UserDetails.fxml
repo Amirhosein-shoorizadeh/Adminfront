@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="detailsRoot" spacing="10" style="-fx-padding: 10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.">
+    <children>
+        <Label fx:id="titleLabel" text="User Details">
+            <font>
+                <Font name="System Bold" size="16"/>
+            </font>
+        </Label>
+        <Label fx:id="idLabel" text="ID: "/>
+        <Label fx:id="nameLabel" text="Full Name: "/>
+        <Label fx:id="phoneLabel" text="Phone: "/>
+        <Label fx:id="emailLabel" text="Email: "/>
+        <Label fx:id="roleLabel" text="Role: "/>
+        <Label fx:id="addressLabel" text="Address: "/>
+        <Label fx:id="bankNameLabel" text="Bank Name: "/>
+        <Label fx:id="accountNumberLabel" text="Account Number: "/>
+        <Label fx:id="balanceLabel" text="Wallet Balance: "/>
+        <Label fx:id="imageLabel" text="Profile Image: "/>
+        <ImageView fx:id="profileImageView" fitWidth="100" fitHeight="100" preserveRatio="true"/>
+        <HBox fx:id="buttons" spacing="10">
+            <children>
+                <Button fx:id="acceptButton" text="Accept" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button fx:id="rejectButton" text="Reject" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-cursor: hand;"/>
+                <Button fx:id="backButton" text="Back" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-cursor: hand;"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>
