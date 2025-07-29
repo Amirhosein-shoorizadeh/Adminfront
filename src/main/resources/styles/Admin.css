@@ -187,3 +187,15 @@
     -fx-spacing: 10px;
 
 }
+
+.my-hbox {
+    -fx-background-color: white;
+    -fx-border-color: #2c3e50; /* رنگ سرمه‌ای تیره */
+    -fx-border-width: 2px; /* ضخامت حاشیه */
+    -fx-border-style: solid; /* نوع حاشیه (خط ممتد) */
+    -fx-border-radius: 10px; /* شعاع گوشه‌های گرد */
+    -fx-background-radius: 10px; /* برای هماهنگی پس‌زمینه با گوشه‌های گرد */
+    -fx-padding: 10px; /* فاصله داخلی برای جلوگیری از چسبیدن محتوا به حاشیه */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+
+}

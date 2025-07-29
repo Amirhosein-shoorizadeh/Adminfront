@@ -24,7 +24,7 @@ public class CouponService {
         }
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/coupons"))
+                .uri(URI.create(BASE_URL + "/admin/coupons"))
                 .header("Content-Type", "application/json")
                 // اضافه کردن توکن به هدر Authorization
                 .header("Authorization", "Bearer " + authToken)
@@ -36,7 +36,7 @@ public class CouponService {
             List<CouponDto> coupons = gson.fromJson(response.body(), new TypeToken<List<CouponDto>>(){}.getType());
             return coupons;
         } else {
-            throw new Exception("خطا در دریافت کوپن‌ها: " + ErrorHandler.parseErrorMessage(response.body()));
+            throw new Exception("error" + ErrorHandler.parseErrorMessage(response.body()));
         }
     }
 
@@ -48,9 +48,8 @@ public class CouponService {
         }
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/coupons/" + id))
+                .uri(URI.create(BASE_URL + "/admin/coupons/" + id))
                 .header("Content-Type", "application/json")
-                // اضافه کردن توکن به هدر Authorization
                 .header("Authorization", "Bearer " + authToken)
                 .DELETE()
                 .build();
@@ -70,7 +69,7 @@ public class CouponService {
 
         String requestBody = gson.toJson(dto);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/coupons"))
+                .uri(URI.create(BASE_URL + "/admin/coupons"))
                 .header("Content-Type", "application/json")
                 // اضافه کردن توکن به هدر Authorization
                 .header("Authorization", "Bearer " + authToken)
@@ -80,6 +79,25 @@ public class CouponService {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() != 201) {
             throw new Exception("خطا در ایجاد کوپن: " + ErrorHandler.parseErrorMessage(response.body()));
+        }
+    }
+
+    public static void updateCoupon(long id, CouponDto dto) throws Exception {
+        String authToken = LoginService.getAuthToken();
+        if (authToken == null || authToken.isEmpty()) {
+            throw new Exception("Invalid token");
+        }
+        String requestBody = gson.toJson(dto);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/admin/coupons/" + dto.getId()))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + authToken)
+                .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() != 200) {
+            throw new Exception("Error" + ErrorHandler.parseErrorMessage(response.body()));
         }
     }
 }

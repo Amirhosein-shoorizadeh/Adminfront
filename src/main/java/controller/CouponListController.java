@@ -37,7 +37,7 @@ public class CouponListController {
 
     @FXML
     void BackAction(ActionEvent event) throws IOException {
-        loadNewScene(event,"view/Dashboard/CouponDashboard.fxml");
+        loadNewScene(event,"/view/Dashboard/CouponDashboard.fxml");
     }
 
     private void setUpCouponList() {
@@ -58,7 +58,7 @@ public class CouponListController {
             private final Button deleteButton = new Button("Delete");
 
             {
-
+                mainLayout.getStyleClass().add("my-hbox");
                 couponCodeLabel.getStyleClass().add("label-title");
                 couponCodeLabel.setStyle("-fx-font-size: 20px;");
                 typeLabel.getStyleClass().add("label-title");
@@ -68,15 +68,18 @@ public class CouponListController {
                 endDateLabel.getStyleClass().add("label-title");
                 endDateLabel.setStyle("-fx-font-size: 12px;");
                 editButton.getStyleClass().add("button2");
+                deleteButton.getStyleClass().add("button2");
                 deleteButton.setStyle("-fx-background-radius: 15px;" +
                         "-fx-background-radius: 15px;" +
-                        "-fx-background-color:  #f44336");
+                        "-fx-background-color:  #f44336;" +
+                        "-fx-text-fill: white;");
                 editButton.setOnAction(event -> {
                     CouponDto couponDto = getItem();
                     ShowEditCoupon(couponDto,event);
                 });
                 deleteButton.setOnAction(event -> {
-
+                    CouponDto couponDto = getItem();
+                    deleteCoupon(couponDto);
                 });
             }
 
@@ -91,6 +94,7 @@ public class CouponListController {
                     startDateLabel.setText(coupon.start_date);
                     endDateLabel.setText(coupon.end_date);
                     userCountLabel.setText(String.valueOf(coupon.user_count));
+                    buttonBox.getChildren().addAll(editButton, deleteButton);
                     rightBox.getChildren().clear();
                     rightBox.getChildren().addAll(userCountLabel,buttonBox);
                     DateBox.getChildren().addAll(startDateLabel,endDateLabel);
