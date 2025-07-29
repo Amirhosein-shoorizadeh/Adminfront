@@ -31,6 +31,9 @@ public class DashboardController {
     private Label labelDashboard;
 
     @FXML
+    private Button userlist;
+
+    @FXML
     private void handleCoupon(ActionEvent event) throws IOException {
         loadNewScene(event, "/view/Dashboard/CouponDashboard.fxml");
     }
@@ -43,6 +46,12 @@ public class DashboardController {
     @FXML
     private void handleDashboardtext(ActionEvent event) throws IOException {
         loadNewScene(event, "/view/User/UserList.fxml");
+    }
+
+
+    @FXML
+    private void userlistaction(ActionEvent event) throws IOException {
+        loadNewScene(event, "/view/User/ShowUsers.fxml");
     }
 
     @FXML

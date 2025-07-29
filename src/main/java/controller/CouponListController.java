@@ -37,7 +37,7 @@ public class CouponListController {
 
     @FXML
     void BackAction(ActionEvent event) throws IOException {
-        loadNewScene(event,"view/Dashboard/CouponDashboard.fxml");
+        loadNewScene(event,"/view/Dashboard/CouponDashboard.fxml");
     }
 
     private void setUpCouponList() {

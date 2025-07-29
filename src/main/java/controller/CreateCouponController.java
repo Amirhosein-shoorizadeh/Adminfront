@@ -2,11 +2,16 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.CouponDto;
 import service.CouponService;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class CreateCouponController {
@@ -41,6 +46,17 @@ public class CreateCouponController {
         }
     }
 
-    public void onBackClicked(ActionEvent event) {
+    public void onBackClicked(ActionEvent event)throws IOException {
+     loadNewScene(event,"/view/Dashboard/CouponDashboard.fxml");
         }
+
+    private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600); // اندازه دلخواه، می‌تونی تغییر بدی
+        stage.setScene(scene);
+        stage.show();
+    }
 }

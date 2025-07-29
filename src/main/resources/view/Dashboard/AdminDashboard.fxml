@@ -31,7 +31,12 @@
             </VBox>
             <VBox prefHeight="400.0" prefWidth="501.0" spacing="10.0">
                <children>
-                  <Button fx:id="Dashboardtext" mnemonicParsing="false" onAction="#handleDashboardtext" prefHeight="414.0" prefWidth="293.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Approval System">
+                  <Button fx:id="Dashboardtext" mnemonicParsing="false" onAction="#handleDashboardtext" prefHeight="231.0" prefWidth="293.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="Approval System">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="userlist" mnemonicParsing="false" onAction="#userlistaction" prefHeight="171.0" prefWidth="293.0" style="-fx-background-radius: 15;" styleClass="button2" stylesheets="@../../styles/Admin.css" text="User List">
                      <font>
                         <Font size="25.0" />
                      </font>
