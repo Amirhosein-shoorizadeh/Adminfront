@@ -1,11 +1,20 @@
 package controller;
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import model.CouponDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import service.CouponService;
+
+import java.io.IOException;
 
 public class EditCouponController {
 
@@ -51,22 +60,43 @@ public class EditCouponController {
 
     @FXML
     private void handleSave(ActionEvent event) {
-        coupon.setCoupon_code(codeField.getText());
-        coupon.setType(typeField.getText());
-        coupon.setValue(Double.valueOf(valueField.getText()));
-        coupon.setMin_price(Integer.valueOf(minPriceField.getText()));
-        coupon.setUser_count(Integer.valueOf(userCountField.getText()));
-        coupon.setStart_date(startDateField.getText());
-        coupon.setEnd_date(endDateField.getText());
+        try{
+            coupon.setCoupon_code(codeField.getText());
+            coupon.setType(typeField.getText());
+            coupon.setValue(Double.valueOf(valueField.getText()));
+            coupon.setMin_price(Integer.valueOf(minPriceField.getText()));
+            coupon.setUser_count(Integer.valueOf(userCountField.getText()));
+            coupon.setStart_date(startDateField.getText());
+            coupon.setEnd_date(endDateField.getText());
+            System.out.println(coupon.Id);
+            CouponService.updateCoupon(coupon.Id,coupon);
+        }catch(Exception e){
+            showError("Error in updating coupon" + e.getMessage());
+        }
 
-        // اینجا باید درخواست به سرور برای آپدیت بفرستی (نیاز به سرویس جدید داره)
-        Stage stage = (Stage) saveButton.getScene().getWindow();
-        stage.close();
     }
 
     @FXML
-    private void handleBack(ActionEvent event) {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.close();
+    private void handleBack(ActionEvent event) throws IOException {
+      loadNewScene(event,"/view/Coupon/CouponList.fxml");
+    }
+    private void showError(String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
+    }
+
+    private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600); // اندازه دلخواه، می‌تونی تغییر بدی
+        stage.setScene(scene);
+        stage.show();
     }
 }

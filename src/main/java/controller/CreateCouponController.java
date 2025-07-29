@@ -46,8 +46,8 @@ public class CreateCouponController {
         }
     }
 
-    public void onBackClicked(ActionEvent event)throws IOException {
-     loadNewScene(event,"/view/Dashboard/CouponDashboard.fxml");
+    public void onBackClicked(ActionEvent event) throws IOException {
+        loadNewScene(event,"/view/Dashboard/CouponDashboard.fxml");
         }
 
     private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {

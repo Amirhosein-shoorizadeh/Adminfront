@@ -42,8 +42,8 @@ public class LoginController {
         }
 
         try {
-//            LoginService.login(phone, password);
-//            System.out.println("Logged in successfully.");
+           LoginService.login(phone, password);
+           System.out.println("Logged in successfully.");
 
             // لود کردن فایل AdminDashboard.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard/AdminDashboard.fxml"));
