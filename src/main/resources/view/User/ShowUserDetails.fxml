@@ -1,34 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowUserDetailsController" alignment="CENTER" spacing="10" prefWidth="400" prefHeight="500">
+<VBox spacing="10" stylesheets="@../../styles/Admin.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowUserDetailsController">
     <children>
         <Label fx:id="titleLabel" text="User Details">
             <font>
-                <Font name="System Bold" size="16"/>
+                <Font name="System Bold" size="16" />
             </font>
         </Label>
-        <Label fx:id="idLabel" text="ID: "/>
-        <Label fx:id="nameLabel" text="Full Name: "/>
-        <Label fx:id="phoneLabel" text="Phone: "/>
-        <Label fx:id="emailLabel" text="Email: "/>
-        <Label fx:id="roleLabel" text="Role: "/>
-        <Label fx:id="addressLabel" text="Address: "/>
-        <Label fx:id="bankNameLabel" text="Bank Name: "/>
-        <Label fx:id="accountNumberLabel" text="Account Number: "/>
-        <Label fx:id="balanceLabel" text="Wallet Balance: "/>
-        <Label fx:id="imageLabel" text="Profile Image: "/>
-        <ImageView fx:id="profileImageView" fitWidth="100" fitHeight="100" preserveRatio="true"/>
-        <HBox fx:id="buttons" spacing="10">
+        <Label fx:id="idLabel" styleClass="label-title" text="ID: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="nameLabel" styleClass="label-title" text="Full Name: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="phoneLabel" styleClass="label-title" text="Phone: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="emailLabel" styleClass="label-title" text="Email: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="roleLabel" styleClass="label-title" text="Role: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="addressLabel" styleClass="label-title" text="Address: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="bankNameLabel" styleClass="label-title" text="Bank Name: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="accountNumberLabel" styleClass="label-title" text="Account Number: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="balanceLabel" styleClass="label-title" text="Wallet Balance: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <Label fx:id="imageLabel" styleClass="label-title" text="Profile Image: ">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin></Label>
+        <ImageView fx:id="profileImageView" fitHeight="100" fitWidth="100" preserveRatio="true" />
+        <HBox fx:id="buttons" alignment="CENTER" spacing="10">
             <children>
-                <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                <Button fx:id="backButton" onAction="#handleBack" style="-fx-background-color: #6b7280; -fx-text-fill: white;" text="Back">
+               <HBox.margin>
+                  <Insets bottom="10.0" />
+               </HBox.margin></Button>
             </children>
         </HBox>
     </children>

@@ -1,6 +1,7 @@
 package controller;
 
 import controller.UserDetailsController;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import model.UserProfileDto;
 import service.ApproveService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UserListController {
 
@@ -72,6 +74,10 @@ public class UserListController {
                 setGraphic(empty ? null : detailsButton);
             }
         });
+        idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().id));
+        nameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().full_name));
+        phoneColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().phone));
+        roleColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().role));
 
         userTable.setItems(users);
 
@@ -82,15 +88,21 @@ public class UserListController {
     @FXML
     public void refreshUsers() {
         try {
-            UserProfileDto[] fetchedUsers = approveService.getUsers();
+            List<UserProfileDto> fetchedUsers = approveService.getUsers();
             users.clear();
-            users.addAll(fetchedUsers);
+            users.setAll(fetchedUsers);
+            userTable.setItems(users);
             System.out.println("User list refreshed successfully");
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error refreshing users: " + e.getMessage());
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    void refreshAction(ActionEvent event) {
+         refreshUsers();
     }
 
     @FXML
@@ -108,7 +120,7 @@ public class UserListController {
     }
     private void showDetailsWindow(UserProfileDto user) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/model/UserDetails.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/User/UserDetails.fxml"));
             Stage detailsStage = new Stage();
             detailsStage.setTitle("User Details");
             detailsStage.setScene(new Scene(loader.load(), 400, 500));
