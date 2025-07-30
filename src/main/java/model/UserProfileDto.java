@@ -1,7 +1,7 @@
 package model;
 
 public class UserProfileDto {
-    private long id;
+    public long id;
     public String full_name;
     public String phone;
     public String email;

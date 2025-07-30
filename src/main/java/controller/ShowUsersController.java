@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +14,7 @@ import model.UserProfileDto;
 import service.ShowUsersService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ShowUsersController {
 
@@ -55,6 +58,7 @@ public class ShowUsersController {
             private final Button detailsButton = new Button("Details");
 
             {
+                detailsButton.setStyle("-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-cursor: hand;");
                 detailsButton.setOnAction(event -> {
                     UserProfileDto user = getTableView().getItems().get(getIndex());
                     showDetailsWindow(user);
@@ -67,6 +71,10 @@ public class ShowUsersController {
                 setGraphic(empty ? null : detailsButton);
             }
         });
+        idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().id));
+        nameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().full_name));
+        phoneColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().phone));
+        roleColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().role));
 
         userTable.setItems(users);
 
@@ -77,9 +85,10 @@ public class ShowUsersController {
     @FXML
     public void refreshUsers() {
         try {
-            UserProfileDto[] fetchedUsers = showUsersService.getUsers();
+            List<UserProfileDto> fetchedUsers = showUsersService.getUsers();
             users.clear();
             users.addAll(fetchedUsers);
+            userTable.setItems(users);
             System.out.println("User list refreshed successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,10 +115,10 @@ public class ShowUsersController {
 
     private void showDetailsWindow(UserProfileDto user) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/model/ShowUserDetails.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/User/ShowUserDetails.fxml"));
             Stage detailsStage = new Stage();
             detailsStage.setTitle("User Details");
-            detailsStage.setScene(new Scene(loader.load(), 800, 600));
+            detailsStage.setScene(new Scene(loader.load(), 400, 500));
 
             ShowUserDetailsController controller = loader.getController();
             controller.setUser(user);
