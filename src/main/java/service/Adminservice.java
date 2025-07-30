@@ -34,17 +34,5 @@ public class Adminservice {
         throw new Exception("خطا در دریافت کاربران: " + ErrorHandler.parseErrorMessage(response.body()));
     }
 
-    // تأیید کاربر
-    public static void approveUser(String userId) throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/users/approve/" + userId))
-                .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + LoginService.getAuthToken())
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        if (response.statusCode() != 200) {
-            throw new Exception("خطا در تأیید کاربر: " + ErrorHandler.parseErrorMessage(response.body()));
-        }
-    }
+
 }

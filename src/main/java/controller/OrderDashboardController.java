@@ -30,7 +30,7 @@ public class OrderDashboardController {
 
     @FXML
     private void handleOrdersList(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Order/OrderList.fxml");
+        loadNewScene(event, "/view/Transiction/admin_orders.fxml");
     }
 
     @FXML
