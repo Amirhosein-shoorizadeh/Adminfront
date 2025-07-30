@@ -1,0 +1,13 @@
+package model;
+
+public enum OrderStatus {
+    NON_SUBMITTED,
+    SUBMITTED,
+    UNPAID_AND_CANCELLED,
+    WAITING_VENDOR,
+    CANCELLED,
+    FINDING_COURIER,
+    ON_THE_WAY,
+    COMPLETED,
+    ACCEPTED_BY_COURIER
+}
