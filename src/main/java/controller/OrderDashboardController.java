@@ -35,7 +35,7 @@ public class OrderDashboardController {
 
     @FXML
     private void handleTransiction(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Transaction/TransactionList.fxml");
+        loadNewScene(event, "/view/Transaction/Transactions.fxml");
     }
 
     private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {

@@ -16,7 +16,7 @@
    <content>
       <VBox alignment="TOP_CENTER" prefHeight="594.0" prefWidth="784.0">
          <children>
-            <Button fx:id="BackButton" mnemonicParsing="false" onAction="#BackAction" styleClass="button2" text="بازگشت">
+            <Button fx:id="BackButton" mnemonicParsing="false" onAction="#BackAction" styleClass="button2" text="Back">
                <VBox.margin>
                   <Insets right="735.0" top="5.0" />
                </VBox.margin>
@@ -32,7 +32,7 @@
                   <ComboBox fx:id="StatusComboBox" prefWidth="150.0" promptText="Status" />
                   <TextField fx:id="UserNameTextField" promptText="User Name" />
                   <TextField fx:id="FoodNameTextField" promptText="Food Name" />
-                  <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchAction" styleClass="button2" text="جستجو" />
+                  <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchAction" styleClass="button2" text="Search" />
                </children>
             </HBox>
             <TableView fx:id="TransActionsTable" prefHeight="442.0" prefWidth="784.0">

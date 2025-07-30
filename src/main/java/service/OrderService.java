@@ -1,6 +1,7 @@
 package service;
 
 
+import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.OrderModel;
@@ -12,15 +13,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class OrderService {
-    private final String backendUrl;
-    private final String authToken;
+    private static final String BASE_URL = "http://localhost:8080";
+    private static final HttpClient client = HttpClient.newHttpClient();
+    private static final Gson gson = new Gson();
 
-    public OrderService(String backendUrl, String authToken) {
-        this.backendUrl = backendUrl;
-        this.authToken = authToken;
-    }
 
-    public ObservableList<OrderModel> searchOrders(String search, String vendor, String courier, String customer, String status) throws Exception {
+    public static ObservableList<OrderModel> searchOrders(String search, String vendor, String courier, String customer, String status) throws Exception {
         JSONObject filters = new JSONObject();
         if (search != null && !search.isEmpty()) filters.put("search", search);
         if (vendor != null && !vendor.isEmpty()) filters.put("vendor", vendor);
@@ -30,9 +28,9 @@ public class OrderService {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(backendUrl + "/admin/orders"))
+                .uri(URI.create(BASE_URL + "/admin/orders"))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + authToken)
+                .header("Authorization", "Bearer " + LoginService.getAuthToken())
                 .POST(HttpRequest.BodyPublishers.ofString(filters.toString()))
                 .build();
 
@@ -42,6 +40,7 @@ public class OrderService {
         }
 
         JSONArray ordersArray = new JSONArray(response.body());
+        System.out.println(ordersArray.length());
         ObservableList<OrderModel> orderList = FXCollections.observableArrayList();
         for (int i = 0; i < ordersArray.length(); i++) {
             JSONObject orderJson = ordersArray.getJSONObject(i);

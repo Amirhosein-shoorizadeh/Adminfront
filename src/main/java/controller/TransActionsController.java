@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,35 +101,13 @@ public class TransActionsController {
             return new SimpleStringProperty(subject);
         });
 
-        idColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Long item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? null : String.valueOf(item));
-            }
-        });
-        orderIdColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Long item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? null : String.valueOf(item));
-            }
-        });
-        userIdColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Long item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? null : String.valueOf(item));
-            }
-        });
-        amountColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Double item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? null : String.format("%.0f", item));
-            }
-        });
-
+        idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
+        orderIdColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getOrder_id() == -1 ? null : cellData.getValue().getOrder_id()));
+        userIdColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getUser_id()));
+        methodColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getMethod()));
+        statusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getStatus()));
+        dateTimeColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getDate_time()));
+        amountColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAmount()));
         // تنظیم ComboBox‌ها
         MethodComboBox.setItems(FXCollections.observableArrayList("wallet", "online"));
         StatusComboBox.setItems(FXCollections.observableArrayList("SUCCESS", "FAILED"));
@@ -143,7 +122,7 @@ public class TransActionsController {
     @FXML
     void BackAction(ActionEvent event) {
         try {
-            loadNewScene(event, "/view/Dashboard/AdminDashboard.fxml");
+            loadNewScene(event, "/view/Dashboard/DashboardAnaliz.fxml");
         } catch (IOException e) {
             showError("Error :" + e.getMessage());
         }
@@ -157,7 +136,7 @@ public class TransActionsController {
                 String foodName = FoodNameTextField.getText().trim();
                 String method = MethodComboBox.getValue();
                 String status = StatusComboBox.getValue();
-
+                System.out.println(method);
                 List<PaymentTransActionDto> filteredTransactions = TransActionService.getTransActions(
                          username,
                          foodName,
@@ -186,6 +165,7 @@ public class TransActionsController {
                 String method = MethodComboBox.getValue();
                 String status = StatusComboBox.getValue();
                 List<PaymentTransActionDto> TransactionsList = TransActionService.getTransActions(username, foodName, method, status);
+                System.out.println(TransactionsList.size());
                 Platform.runLater(() -> {
                     transactions.clear();
                     transactions.addAll(TransactionsList);

@@ -1,14 +1,22 @@
 package controller;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import model.LoginDto;
 import model.OrderModel;
 import model.OrderStatus;
 import service.OrderService;
+
+import java.io.IOException;
+import java.util.List;
 
 public class AdminOrdersController {
     @FXML private TextField searchField;
@@ -28,12 +36,10 @@ public class AdminOrdersController {
 
     @FXML
     private void initialize() {
-        // Initialize ChoiceBox
-        statusChoiceBox.getItems().add("All");
         for (OrderStatus status : OrderStatus.values()) {
             statusChoiceBox.getItems().add(status.name());
         }
-        statusChoiceBox.setValue("All");
+
 
         // Set up table columns
         ordersTable.getColumns().forEach(column -> {
@@ -56,8 +62,8 @@ public class AdminOrdersController {
     }
 
     @FXML
-    private void goBack() {
-        // Replace with your navigation logic
+    private void goBack(ActionEvent event) throws IOException {
+        loadNewScene(event,"/view/Dashboard/DashboardAnaliz.fxml");
         System.out.println("Back button clicked - Implement navigation in your project");
     }
 
@@ -68,11 +74,41 @@ public class AdminOrdersController {
             String courier = courierField.getText().trim();
             String customer = customerField.getText().trim();
             String status = statusChoiceBox.getValue();
+            ObservableList<OrderModel> orderList = OrderService.searchOrders(search, vendor, courier, customer, status);
+            System.out.println(orderList.size());
 
-            ordersTable.setItems(orderService.searchOrders(search, vendor, courier, customer, status));
+            ordersTable.setItems(orderList);
         } catch (Exception e) {
             e.printStackTrace();
-            // Optionally show an alert to the user
+            showError("Error loading orders");
         }
+    }
+    private void loadNewScene(ActionEvent event, String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600); // اندازه دلخواه، می‌تونی تغییر بدی
+        stage.setScene(scene);
+        stage.show();
+    }
+    private void showError(String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("خطا");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
+    }
+
+    private void showInfo(String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("اطلاعات");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
     }
 }

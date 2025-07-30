@@ -21,8 +21,9 @@ public class TransActionService {
         JSONObject body = new JSONObject();
         body.put("user", userName);
         body.put("search", foodName);
-        body.put("method", method);
+        body.put("method", method );
         body.put("status", status);
+
         String jsonBody =body.toString();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL +  "/admin/transactions"))
