@@ -3,10 +3,12 @@ package model;
 public class Bankinfo {
     private String accountNumber;
     private String bankName;
+    public double walletBalance;
 
-    public Bankinfo(String accountNumber, String bankName) {
+    public Bankinfo(String accountNumber, String bankName , double walletBalance) {
         this.accountNumber = accountNumber;
         this.bankName = bankName;
+        this.walletBalance = walletBalance;
     }
 
     public String getAccountNumber() {
@@ -23,6 +25,13 @@ public class Bankinfo {
 
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    public double getWalletBalance() {
+        return walletBalance;
+    }
+    public void setWalletBalance(double walletBalance) {
+        this.walletBalance = walletBalance;
     }
 
     @Override
