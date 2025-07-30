@@ -40,7 +40,7 @@ public class DashboardController {
 
     @FXML
     private void handleFinancialAnalysis(ActionEvent event) throws IOException {
-        loadNewScene(event, "/view/Dashboard/FinancialAnalysisDashboard.fxml"); // فرض شده یه صفحه جدید
+        loadNewScene(event, "/view/Dashboard/DashboardAnaliz.fxml"); // فرض شده یه صفحه جدید
     }
 
     @FXML
